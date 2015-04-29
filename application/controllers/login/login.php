@@ -22,32 +22,29 @@ class Login extends CI_Controller
     }
     function intenta_loggear()
     {
-        if($this->session->userdata('idusuario')){
-            $usuario = array();
-            if(isset($_POST['usuario'])) $usuario = $this->loginCRUD->intentaLoggear($_POST['usuario'],$_POST['pass']);
-                if(count($usuario) > 0){
-                    $datos=array("idusuario"=> $usuario[0]->id,"nombre"=> $usuario[0]->nombre,"usuario"=> $usuario[0]->usuario,"rol"=> $usuario[0]->id_rol);
-                    $this->session->set_userdata($datos);
-                    
-                    $this->load->view(
-                        'main', 
-                        array(
-                            "modulo" => 'menu',
-                            "pagina" => 'panel'
-                        )
-                    );
-                }else{
-                    $this->load->view(
+        $usuario = array();
+        if(isset($_POST['usuario'])) $usuario = $this->loginCRUD->intentaLoggear($_POST['usuario'],$_POST['pass']);
+            if(count($usuario) > 0){
+                $datos=array("idusuario"=> $usuario[0]->id,"nombre"=> $usuario[0]->nombre,"usuario"=> $usuario[0]->usuario,"rol"=> $usuario[0]->id_rol);
+                $this->session->set_userdata($datos);
+                $this->loginCRUD->setLog($usuario[0]->id,'login');
+                $this->load->view(
                     'main', 
                     array(
-                        "modulo" => 'login',
-                        "pagina" => 'login'
+                        "modulo" => 'menu',
+                        "pagina" => 'panel'
                     )
                 );
-            }
-        }else{
-            $this->load->view('login');
+            }else{
+                $this->load->view(
+                'main', 
+                array(
+                    "modulo" => 'login',
+                    "pagina" => 'login'
+                )
+            );
         }
+        
     }
 
     function intenta_desloggear()

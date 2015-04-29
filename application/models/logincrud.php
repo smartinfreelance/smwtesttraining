@@ -23,14 +23,15 @@ class LoginCRUD extends CI_Model {
 										usuarios.password = md5('".$password."')
 									and
 										usuarios.estado = 0");
+        var_dump($query);
 		return $query->result();
     }
 	
-	function registroLog($id,$accion){
+	function setLog($id,$accion){
 		$query= $this->db->query("insert into 
-									log_usuarios(
-										id_usuario,
-										modulo
+									log(
+										id_user,
+										action
 									)
 									values (
 										".$id.",

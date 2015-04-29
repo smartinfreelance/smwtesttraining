@@ -6,6 +6,7 @@ class Preguntas extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('preguntascrud');
+        $this->load->model('loginCRUD');
     }
 
 	public function index()
@@ -26,6 +27,7 @@ class Preguntas extends CI_Controller {
 	public function modoLectura()
 	{
 		if($this->session->userdata('idusuario')){
+			$this->loginCRUD->setLog($this->session->userdata('idusuario'),'MLectura');
 			$preguntas = $this->preguntascrud->getAllPreguntas();
 			$this->load->view('main', 
 								array(
@@ -53,6 +55,7 @@ class Preguntas extends CI_Controller {
 	public function unaPregunta()
 	{
 		if($this->session->userdata('idusuario')){
+			$this->loginCRUD->setLog($this->session->userdata('idusuario'),'MPreguntados');
 			if(isset($_POST["id_pregunta"])){
 				$id_pregunta = $_POST['id_pregunta'];
 			}else{
@@ -131,6 +134,7 @@ class Preguntas extends CI_Controller {
 			$filtro = "";
 		}*/
 		if($this->session->userdata('idusuario')){
+			$this->loginCRUD->setLog($this->session->userdata('idusuario'),'Finaliza MPreguntados');
 			if(isset($_POST["correctas_f"])){
 				$correctas = $_POST["correctas_f"];
 			}else{
@@ -157,7 +161,7 @@ class Preguntas extends CI_Controller {
 			}else{
 				$porcentaje = round(0 ,2);
 			}
-			
+			$this->loginCRUD->setLog($this->session->userdata('idusuario'),'Finaliza MPreguntados'.$porcentaje);
 
 			$this->load->view('main', 
 								array(

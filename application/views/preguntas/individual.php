@@ -36,12 +36,12 @@
 </script>
 <div id = "main-content">
 	<div class = "container">	
-		<div style = "display:block" id = "noResponde"><br /></div>
+		<div style = "display:block" id = "noResponde"><br /><br /><br /></div>
 		<div style = "display:none" id = "respondeBien" class = "alert alert-success fade in">CORRECTO</div>
 		<div style = "display:none" id = "respondeMal"  class = "alert alert-error fade in">INCORRECTO</div>
 
 				<p>
-					<strong><?php echo $pregunta->id.") ".$pregunta->pregunta; ?></strong>
+					<strong><?php echo $total.") ".$pregunta->pregunta."(".$pregunta->id.")"; ?></strong>
 				</p>
 		<?php
 			foreach($respuestas as $r){
