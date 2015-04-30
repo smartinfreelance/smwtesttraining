@@ -23,7 +23,6 @@ class LoginCRUD extends CI_Model {
 										usuarios.password = md5('".$password."')
 									and
 										usuarios.estado = 0");
-        var_dump($query);
 		return $query->result();
     }
 	

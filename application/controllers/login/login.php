@@ -36,13 +36,7 @@ class Login extends CI_Controller
                     )
                 );
             }else{
-                $this->load->view(
-                'main', 
-                array(
-                    "modulo" => 'login',
-                    "pagina" => 'login'
-                )
-            );
+                $this->load->view('login');
         }
         
     }

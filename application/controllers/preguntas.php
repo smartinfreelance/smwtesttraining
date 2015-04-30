@@ -83,26 +83,25 @@ class Preguntas extends CI_Controller {
 			$filtro_edited = "";
 			if($filtro!=""){
 				$filtro_edited = str_replace("-",",",$filtro);
-				$filtro_edited = "and preguntas.id not in (".$filtro_edited.") ";
+				$filtro_edited = " and preguntas.id not in (".$filtro_edited.") ";
+			} 
 
-				$id_respuesta = $_POST['id_respuesta'];
-				$resultado = $this->preguntascrud->comprobarRespuesta($id_pregunta,$id_respuesta);
+			if(isset($_POST['id_respuesta'])){
+				$resultado = $this->preguntascrud->comprobarRespuesta($id_pregunta,$_POST['id_respuesta']);
 				$correctas = $correctas + $resultado;
 			}
 			
 			$pregunta = $this->preguntascrud->getPregunta($filtro_edited);
 
-			if($pregunta[0]){
+			if(!empty($pregunta)){
 				$respuestas = $this->preguntascrud->getRespuestasById($pregunta[0]->id);
+				
+				if($filtro == ""){
+					$filtro = $pregunta[0]->id;
+				}else{
+					$filtro = $filtro."-".$pregunta[0]->id;
+				}
 
-				if($id_pregunta!=""){
-					if($filtro!=""){
-						$filtro = $id_pregunta."-".$filtro;
-					}else{
-						$filtro = $id_pregunta;
-					}
-					
-				}		
 				$this->load->view('main', 
 									array(
 										"modulo" => 'preguntas',
@@ -114,7 +113,7 @@ class Preguntas extends CI_Controller {
 										"correctas" => $correctas
 										));
 			}else{
-				$this->imprimirResultado($total,$correctas);
+				$this->imprimirResultado($total-1,$correctas);
 			}
 		}else{
 			$this->load->view('login');
