@@ -31,7 +31,7 @@
 
 		setTimeout(function () {
 	        formSiguiente.submit();
-	    }, 1); 
+	    }, 1500); 
 	}
 </script>
 <div id = "main-content">
@@ -58,11 +58,11 @@
 		<?php 
 			echo form_open('preguntas/unaPregunta', array('id'=>'formSiguiente')); 
 		?>
-			<input type = "text" id = "total" name = "total" value = "<?php echo $total; ?>" />
-			<input type = "text" id = "correctas" name = "correctas" value = "<?php echo $correctas; ?>" />
-			<input type = "text" id = "filtro" name = "filtro" value = "<?php echo $filtro; ?>" />
-			<input type = "text" id = "id_pregunta" name = "id_pregunta" value = "<?php echo $pregunta->id; ?>" />
-			<input type = "text" id = "id_respuesta" name = "id_respuesta" value = "" />
+			<input type = "hidden" id = "total" name = "total" value = "<?php echo $total; ?>" />
+			<input type = "hidden" id = "correctas" name = "correctas" value = "<?php echo $correctas; ?>" />
+			<input type = "hidden" id = "filtro" name = "filtro" value = "<?php echo $filtro; ?>" />
+			<input type = "hidden" id = "id_pregunta" name = "id_pregunta" value = "<?php echo $pregunta->id; ?>" />
+			<input type = "hidden" id = "id_respuesta" name = "id_respuesta" value = "" />
 		<?php 
 			echo form_submit(array(
 				'value'=>'Siguiente',
@@ -76,11 +76,11 @@
 			echo form_close();
 			echo form_open('preguntas/finalizarPreguntados'); 
 		?>
-			<input type = "text" id = "total_f" name = "total_f" value = "<?php echo $total; ?>" />
-			<input type = "text" id = "correctas_f" name = "correctas_f" value = "<?php echo $correctas; ?>" />
-			<input type = "text" id = "filtro_f" name = "filtro_f" value = "<?php echo $filtro; ?>" />
-			<input type = "text" id = "id_pregunta_f" name = "id_pregunta_f" value = "<?php echo $pregunta->id; ?>" />
-			<input type = "text" id = "id_respuesta_f" name = "id_respuesta_f" value = "" />
+			<input type = "hidden" id = "total_f" name = "total_f" value = "<?php echo $total; ?>" />
+			<input type = "hidden" id = "correctas_f" name = "correctas_f" value = "<?php echo $correctas; ?>" />
+			<input type = "hidden" id = "filtro_f" name = "filtro_f" value = "<?php echo $filtro; ?>" />
+			<input type = "hidden" id = "id_pregunta_f" name = "id_pregunta_f" value = "<?php echo $pregunta->id; ?>" />
+			<input type = "hidden" id = "id_respuesta_f" name = "id_respuesta_f" value = "" />
 
 		<?php 
 			echo form_submit(array(

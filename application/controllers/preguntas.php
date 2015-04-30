@@ -55,7 +55,6 @@ class Preguntas extends CI_Controller {
 	public function unaPregunta()
 	{
 		if($this->session->userdata('idusuario')){
-			$this->loginCRUD->setLog($this->session->userdata('idusuario'),'MPreguntados');
 			if(isset($_POST["id_pregunta"])){
 				$id_pregunta = $_POST['id_pregunta'];
 			}else{
